@@ -1,0 +1,14 @@
+[project]
+name = "dbt-analytics"
+version = "0.1.0"
+description = "Local analytics transformations with dbt and DuckDB"
+requires-python = ">=3.13"
+dependencies = [
+  "dbt-duckdb",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
