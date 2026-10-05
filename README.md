@@ -8,7 +8,9 @@ The goal is to understand demand across hours, weekdays, and seasons, identify s
 
 **Milestone 1 completed:** repository setup, project scope, and local dbt/DuckDB configuration. The DuckDB connection and dbt project parsing have been verified.
 
-**Next:** download and profile a bounded historical trip dataset before building the first dbt model. Ingestion, analytical models, CI, and business findings are not implemented yet.
+**Milestone 2 in progress:** the January 2025 NYC trip archive has been downloaded and profiled locally: 2,124,475 records across three CSV files. See [source details and initial observations](docs/DATA_SOURCE.md).
+
+**Next:** define raw-table types and inclusion rules, load DuckDB, and build the first dbt staging model. The persistent raw load, analytical models, CI, and business findings are not implemented yet.
 
 ## Business questions
 

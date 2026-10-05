@@ -45,7 +45,7 @@ I am using VS Code and a local stack without paid infrastructure, trial sessions
 
 ## Milestones and acceptance criteria
 
-Milestone 1 is complete. The next step is source selection and download for Milestone 2.
+Milestone 1 is complete. Milestone 2 is in progress: the January 2025 archive has been downloaded and profiled. Raw-table loading and the first dbt model remain. [Source inspection](DATA_SOURCE.md) records the initial evidence.
 
 | Milestone | Deliverable | Acceptance evidence |
 | --- | --- | --- |

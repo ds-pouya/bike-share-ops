@@ -1,0 +1,91 @@
+{
+  "source_url": "https://s3.amazonaws.com/tripdata/202501-citibike-tripdata.zip",
+  "archive_sha256": "ed3b0138903960afe50386ab44fec8bf52d69474b26f5c0af83e648094aea096",
+  "profiled_at_utc": "2026-10-05T19:12:51.657240+00:00",
+  "duckdb_version": "1.5.6",
+  "scope": "All CSV files in the January 2025 NYC archive; no sampling or row filtering",
+  "inferred_grain": "One recorded trip per row; ride_id is the candidate key",
+  "timestamp_note": "Source timestamps have no time-zone offsets; no time-zone conversion applied",
+  "columns": [
+    "ride_id",
+    "rideable_type",
+    "started_at",
+    "ended_at",
+    "start_station_name",
+    "start_station_id",
+    "end_station_name",
+    "end_station_id",
+    "start_lat",
+    "start_lng",
+    "end_lat",
+    "end_lng",
+    "member_casual"
+  ],
+  "files": [
+    {
+      "file": "202501-citibike-tripdata_1.csv",
+      "rows": 1000000
+    },
+    {
+      "file": "202501-citibike-tripdata_2.csv",
+      "rows": 1000000
+    },
+    {
+      "file": "202501-citibike-tripdata_3.csv",
+      "rows": 124475
+    }
+  ],
+  "summary": {
+    "rows": 2124475,
+    "distinct_ride_ids": 2124475,
+    "missing_ride_ids": 0,
+    "first_start": "2024-12-30 23:41:25.635000",
+    "last_start": "2025-01-31 23:58:14.634000",
+    "first_end": "2025-01-01 00:00:04.075000",
+    "last_end": "2025-01-31 23:59:59.098000",
+    "invalid_start_times": 0,
+    "invalid_end_times": 0,
+    "nonpositive_durations": 0,
+    "durations_over_24h": 288,
+    "durations_under_60s": 0,
+    "starts_outside_month": 207,
+    "duplicate_ride_id_rows": 0
+  },
+  "missing_values": {
+    "ride_id": 0,
+    "rideable_type": 0,
+    "started_at": 0,
+    "ended_at": 0,
+    "start_station_name": 564,
+    "start_station_id": 564,
+    "end_station_name": 3975,
+    "end_station_id": 4322,
+    "start_lat": 564,
+    "start_lng": 564,
+    "end_lat": 4310,
+    "end_lng": 4310,
+    "member_casual": 0
+  },
+  "categories": {
+    "rideable_type": [
+      {
+        "value": "electric_bike",
+        "rows": 1493551
+      },
+      {
+        "value": "classic_bike",
+        "rows": 630924
+      }
+    ],
+    "member_casual": [
+      {
+        "value": "member",
+        "rows": 1922616
+      },
+      {
+        "value": "casual",
+        "rows": 201859
+      }
+    ]
+  }
+}

@@ -9,3 +9,6 @@ data/*.duckdb
 
 # Personal working notes
 docs/LEARNING_LOG.md
+
+# Downloaded source files
+data/raw/
