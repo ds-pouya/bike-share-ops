@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Build a reproducible portfolio project that turns public bike-share data into trustworthy operational analysis. Learn dbt and data engineering through small implementations that the author can explain and defend.
+I am building this project to learn dbt and develop my data engineering skills. I want to turn public bike-share data into reliable analysis that helps an operator understand demand and prioritize improvements to bike and dock availability.
 
 ## Intended user and decisions
 
@@ -18,9 +18,9 @@ Questions:
 
 ## Sources and evidence limits
 
-- [Citi Bike trip history and GBFS feeds](https://citibikenyc.com/system-data): historical completed trips and current station metadata/status. Select a bounded dataset after inspecting its actual schema, size, and quality.
-- [Open-Meteo historical weather API](https://open-meteo.com/en/docs/historical-weather-api): weather context from reanalysis data. Confirm access conditions and attribution before ingestion.
-- Optional dockless bike/scooter trip data: investigate public availability, geographic precision, terms, and suitability before committing to clustering.
+- [Citi Bike trip history and GBFS feeds](https://citibikenyc.com/system-data): historical completed trips and current station metadata/status. The initial scope will be a bounded dataset, selected after checking its schema, size, and quality.
+- [Open-Meteo historical weather API](https://open-meteo.com/en/docs/historical-weather-api): weather context from reanalysis data. Access conditions and attribution will be documented before ingestion.
+- Optional dockless bike/scooter trip data: clustering will depend on public availability, geographic precision, terms, and suitability.
 
 Completed trips do not measure unmet demand. Missing station identifiers do not prove an off-station drop-off. Live availability history begins with our collector; gaps and stale observations must not be treated as uninterrupted coverage. Observed drop-off clusters do not by themselves establish pickup demand or suitable construction sites. Station expansion is exploratory and must account for departures, coverage, and data quality; feasibility constraints may remain outside scope.
 
@@ -39,9 +39,13 @@ flowchart TD
     G --> I[Optional rebalancing simulation]
 ```
 
-This is the planned architecture, not a deployed system. Use Python, DuckDB, dbt, Git, and VS Code locally. No paid infrastructure, trial sessions, or required cloud credentials. Choose dashboard tooling later; the core project must remain reproducible without a paid BI license. Use scheduled local polling rather than promising continuous uptime. Any optional GitHub automation must fit available free usage and is not required for local execution.
+This is the planned architecture. Python will collect source data and load raw tables into DuckDB. dbt will run SQL transformations inside DuckDB to create staging models, intermediate models, and analytical marts. DuckDB stores the data; dbt manages the transformation workflow, tests, and documentation.
+
+I am using VS Code and a local stack without paid infrastructure, trial sessions, or required cloud credentials. Dashboard tooling is still to be selected. Live collection will use scheduled local polling, with collection gaps recorded. Optional GitHub automation will stay within available free usage; local execution will remain independent of it.
 
 ## Milestones and acceptance criteria
+
+Milestone 1 is complete. The next step is source selection and download for Milestone 2.
 
 | Milestone | Deliverable | Acceptance evidence |
 | --- | --- | --- |
@@ -52,17 +56,13 @@ This is the planned architecture, not a deployed system. Use Python, DuckDB, dbt
 | 5. Portfolio delivery | Reproducible sample, CI, lineage, runbook, tradeoffs | Fresh checkout runs without credentials; CI validates sample transformations; publish evidence-backed findings |
 | 6. Optional decision support | Rebalancing simulation and/or station-location exploration | Compare with baseline; disclose assumptions; retain only conclusions supported by suitable data |
 
-## Engineering standards to introduce as needed
+## Engineering approach
 
-Define grains, keys, timestamps, and time zones. Preserve raw evidence and ingestion metadata. Handle retries, duplicate loads, delayed records, and schema changes. Test complex transformation logic and important business rules. Record freshness, failures, and recovery steps. Benchmark changes on a named dataset and environment before claiming improvements.
+Each table will have a documented grain, key, and timestamp convention. Raw data and ingestion metadata will support tracing results back to their sources. As ingestion develops, I will address retries, duplicate loads, delayed records, and schema changes.
 
-Commit a small reproducible sample only after checking source terms; exclude bulk downloads and local databases. Do not publish credentials. Keep documentation honest about what is planned and what has been verified.
+Tests will cover important business rules and complex transformations. Operational documentation will describe freshness checks, failures, and recovery. Performance comparisons will identify the dataset and environment used.
 
-## Mentorship and daily progress
-
-Use a cycle of explain → implement → review → verify → commit → push. The author implements the learning tasks; the mentor supplies explanations, hints, examples, review, and debugging assistance as needed. Size work to the author's available time rather than imposing a fixed schedule.
-
-Aim for one meaningful daily deliverable: code, a useful test, a documented modeling decision, source profiling, or an evidence-backed finding. Record actual dates and outcomes; do not manufacture empty commits or backdate progress. Publish a LinkedIn draft for author review after defensible results exist; publishing is a separate decision.
+A small reproducible sample will be included where source terms permit redistribution. Bulk downloads, local databases, and credentials will stay outside version control.
 
 ## Final portfolio evidence
 

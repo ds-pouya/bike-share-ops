@@ -1,20 +1,34 @@
 # Bike Share Ops
 
-A portfolio project learning data engineering and dbt through bike-share demand, station availability, and rebalancing analysis.
+I am building this project to learn dbt and develop my data engineering skills through a practical bike-share operations problem.
 
-**Status:** Milestone 1 — project definition and local setup. Ingestion, analytical models, CI, and business findings are planned; they are not implemented yet.
+The goal is to understand demand across hours, weekdays, and seasons, identify stations with availability problems, and evaluate where limited rebalancing resources could help.
 
-## Business problem
+## Project status
 
-Help an operator identify stations with availability problems and prioritize limited rebalancing resources. Explore additional parking or docking capacity only where the available data supports a defensible conclusion.
+**Milestone 1 completed:** repository setup, project scope, and local dbt/DuckDB configuration. The DuckDB connection and dbt project parsing have been verified.
 
-## Local stack
+**Next:** download and profile a bounded historical trip dataset before building the first dbt model. Ingestion, analytical models, CI, and business findings are not implemented yet.
 
-Python → raw JSON/Parquet → DuckDB → dbt → analytical marts → dashboard.
+## Business questions
 
-The project will run without paid cloud services, trial accounts, or cloud credentials. Live collection depends on the local computer being available; observation gaps will be recorded.
+- When and where do riders start and finish trips?
+- Which stations frequently have no bikes or available docks during observed periods?
+- How does demand vary with weather?
+- Can a rebalancing policy improve availability compared with a simple baseline?
+- If suitable location data is available, where might additional parking or docking capacity be useful?
 
-## Start here
+Completed trips show observed usage. They do not capture trips that never started because no bike was available. Availability analysis will use station observations and report gaps in coverage.
+
+## Planned stack
+
+Python → raw JSON/Parquet → DuckDB → dbt staging and intermediate models → analytical marts → dashboard.
+
+Python will collect data and load raw tables. DuckDB will store the data. dbt will execute SQL transformations in DuckDB, test the results, and document dependencies.
+
+The core project will run locally without paid cloud services, trial accounts, or cloud credentials. Live collection will depend on the local computer being available.
+
+## Local setup
 
 ```sh
 cd ~/dev/github/bike-share-ops
@@ -24,6 +38,4 @@ dbt debug
 dbt parse
 ```
 
-See [SETUP.md](SETUP.md) for setup and VS Code instructions, [the project charter](docs/PROJECT_CHARTER.md) for scope and acceptance criteria, and [the learning log](docs/LEARNING_LOG.md) for verified progress.
-
-There are currently no models to build. The next milestone selects and profiles a bounded historical dataset before implementing the first transformation.
+[Setup instructions](SETUP.md) cover the environment and VS Code configuration. The [project charter](docs/PROJECT_CHARTER.md) describes the planned scope, architecture, and completion criteria.

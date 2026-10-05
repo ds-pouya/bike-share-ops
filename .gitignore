@@ -6,3 +6,6 @@ logs/
 data/*.duckdb
 .DS_Store
 .dbt/.user.yml
+
+# Personal working notes
+docs/LEARNING_LOG.md
