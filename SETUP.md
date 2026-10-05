@@ -1,11 +1,11 @@
-# Personal dbt + DuckDB setup guide
+# Bike Share Ops setup guide
 
 This local project uses dbt for SQL transformations, DuckDB as its database, a Python virtual environment for isolation, and direnv to prepare your terminal automatically.
 
 ## Daily use
 
 ```sh
-cd ~/dev/github/dbt-analytics
+cd ~/dev/github/bike-share-ops
 dbt debug
 dbt build
 ```
@@ -17,7 +17,7 @@ Entering the folder activates `.venv` and sets `DBT_PROFILES_DIR` automatically.
 ## Project map
 
 ```text
-dbt-analytics/
+bike-share-ops/
 ├── .venv/                Project-only Python packages; not committed
 ├── .envrc                Automatic terminal setup for direnv
 ├── .dbt/profiles.yml     DuckDB connection configuration
@@ -32,6 +32,28 @@ dbt-analytics/
 ```
 
 The `dbt-duckdb` software package lives inside `.venv`. The separate `data/analytics.duckdb` file is the actual database that stores your tables and views. The profile tells dbt where that file lives.
+
+## VS Code
+
+Open the project folder with **File → Open Folder**, selecting `~/dev/github/bike-share-ops`. After a rename, close terminals belonging to the old folder and create a new integrated terminal. Existing interpreter selections can also retain the old path: run **Python: Select Interpreter** and choose `.venv/bin/python` in the renamed folder.
+
+Workspace settings select the local Python interpreter by default and point new integrated terminals at `.dbt` for the dbt profile. Python environments contain absolute paths, so moving a folder requires repairing or recreating the environment before using it.
+
+Recommended extensions (also listed in `.vscode/extensions.json`):
+
+- [Python by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for interpreter selection and Python tooling.
+- [YAML by Red Hat](https://marketplace.visualstudio.com/itemdetails?itemName=redhat.vscode-yaml) for configuration editing.
+
+No dbt extension or account is required for the first lessons; dbt runs from the integrated terminal.
+
+If you do not use direnv, activate explicitly:
+
+```sh
+source .venv/bin/activate
+export DBT_PROFILES_DIR="$PWD/.dbt"
+dbt debug
+dbt parse
+```
 
 ## Create a new project from scratch
 
@@ -178,7 +200,7 @@ Use `dbt test` to run tests. Use `dbt build` for the normal full project run.
 
 | Problem | Command | Result |
 | --- | --- | --- |
-| dbt command missing | `cd ~/dev/github/dbt-analytics` | direnv activates the project. |
+| dbt command missing | `cd ~/dev/github/bike-share-ops` | direnv activates the project. |
 | Profile not found | `direnv allow` | Re-authorizes and reloads `.envrc`. |
 | Check setup | `dbt debug` | Tests dbt and DuckDB connection. |
 | Remove dbt generated files | `dbt clean` | Deletes `target/` and `dbt_packages/`. |

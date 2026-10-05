@@ -1,8 +1,8 @@
-name: dbt_analytics
+name: bike_share_ops
 version: 1.0.0
 config-version: 2
 
-profile: dbt_analytics
+profile: bike_share_ops
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]

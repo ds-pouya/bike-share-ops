@@ -1,4 +1,4 @@
-dbt_analytics:
+bike_share_ops:
   target: dev
   outputs:
     dev:
